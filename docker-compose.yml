@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: sharpie-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  ollama-init:
+    image: curlimages/curl:latest
+    container_name: sharpie-ollama-init
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: |
+      sh -c "
+        sleep 10
+        curl -X POST http://ollama:11434/api/pull -d '{\"name\": \"qwen2.5:3b\"}'
+      "
+
+  backend:
+    build: ./backend
+    container_name: sharpie-backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - db_data:/app/data
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+      - DATABASE_PATH=/app/data/sharpie.db
+    depends_on:
+      ollama:
+        condition: service_healthy
+    restart: unless-stopped
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+volumes:
+  ollama_data:
+    driver: local
+  db_data:
+    driver: local
