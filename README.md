@@ -231,7 +231,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 - [Ollama](https://ollama.ai/) for local LLM inference
 - [FastAPI](https://fastapi.tiangolo.com/) for the backend framework
 - [React](https://react.dev/) for the frontend
-- Qwen team for the excellent small language models
+- [Qwen](https://qwen.ai/) team for the excellent small language models
 
 ## Star History
 
