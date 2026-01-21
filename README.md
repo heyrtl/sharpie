@@ -19,9 +19,25 @@ Build, test, and share AI prompts with zero API costs. Run entirely on your mach
 - **GPU accelerated** - Leverages your NVIDIA GPU automatically
 - **No dependencies** - Everything runs in Docker containers
 
-## Demo
+## Screenshots
 
-*Coming soon*
+### Main Interface
+![Main UI](screenshots/main-ui.png)
+
+### Response 
+![Streaming](screenshots/response-streaming.png)
+![Raw](screenshots/response-raw.png)
+![Markdown](screenshots/response-markdown.png)
+
+### Fork & Share
+![Click Fork to copy link to rework on prompt](screenshots/click-fork-to-rework.png)
+![Click Share to copy link with response](screenshots/click-share-to-copy.png)
+
+### Backend
+![Fast APi Backend](screenshots/fast-backend.png)
+
+### Settings
+! [Model Picker Settings](screenshots/settings.png)
 
 ## Quick Start
 
