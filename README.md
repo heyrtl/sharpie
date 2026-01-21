@@ -37,7 +37,7 @@ Build, test, and share AI prompts with zero API costs. Run entirely on your mach
 ![Fast APi Backend](screenshots/fast-backend.png)
 
 ### Settings
-! [Model Picker Settings](screenshots/settings.png)
+![Model Picker Settings](screenshots/settings.png)
 
 ## Quick Start
 
